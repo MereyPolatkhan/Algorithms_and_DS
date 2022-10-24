@@ -1,6 +1,3 @@
-// щщс 4 сагатым ай
-// 4 сагат кеттигой са*бал
-
 #include <bits/stdc++.h> 
 
 using namespace std;
@@ -9,21 +6,17 @@ struct Node {
     int data;
     int index;
     Node *next;
+
+    
     Node() {
-        this->data = -55555;
-        this->index = -55555;
+        this->data = 0;
+        this->index = 0;
         this->next = NULL;
     }
     Node(int data, int index) {
         this->data = data;
         this->index = index;
         this->next = NULL;
-    }
-
-    Node (int data, int index, Node* next) {
-        this->data = data;
-        this->index = index;
-        this->next = next;
     }
 };
 
@@ -35,6 +28,7 @@ struct LinkedList {
         this->head = NULL;
         this->tail = head;
     }
+    // pb = insert = build LL
     void pushBack(int data, int ind) {
         Node* newNode = new Node(data, ind);
         if (head == NULL) {
@@ -47,19 +41,21 @@ struct LinkedList {
 
     }
 
-    int distance(int k) {
-        int min = 10000000;
-        int offset;
-        Node* v = head;
-        while (v != NULL) {
-            v->data = abs(v->data - k);
-            if (v->data < min) {
-                min = v->data;
-                offset = v->index;
+    int distance(int x) {
+        Node* cur = head;
+        int res_index;
+        int min_cur = 1000000;
+        
+        while (cur != NULL) {
+            int dist = abs(cur->data - x);
+            if (dist < min_cur) {
+                min_cur = dist;
+                res_index = cur->index;
             }
-            v = v->next;
+
+            cur = cur->next;
         }
-        return offset;
+        return res_index;
     }
 
     void print(){
@@ -76,19 +72,19 @@ int main() {
     int n;
     cin >> n;   
 
-    LinkedList* ll = new LinkedList();
+    LinkedList ll;
 
     for (int i = 0; i < n; i++) {
         int data; cin >> data;
-        ll->pushBack(data, i);
+        ll.pushBack(data, i);
     }
 
 
     int k; 
     cin >> k;
-    // ll->print();
+    // ll.print();
 
-    cout << ll->distance(k);
+    cout << ll.distance(k);
     
     return 0;
 }

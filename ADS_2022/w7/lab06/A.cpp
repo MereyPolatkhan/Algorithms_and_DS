@@ -1,8 +1,8 @@
-#include <iostream>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
-int partition(int arr[], int low, int high) {
+int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = low;
 
@@ -17,9 +17,17 @@ int partition(int arr[], int low, int high) {
     return i;
 }
 
-void quick_sort(int arr[], int low, int high) {
+int random(vector<int> & arr, int low, int high) {
+    srand(time(NULL));
+    int random_num = rand() % (high - low) + low;
+    
+    swap(arr[random_num], arr[high]);
+    return partition(arr, low, high);
+}
+
+void quick_sort(vector<int> & arr, int low, int high) {
     if (low < high) {
-        int p = partition(arr, low, high);
+        int p = random(arr, low, high);
         quick_sort(arr, low, p - 1);
         quick_sort(arr, p + 1, high);
     }
@@ -32,27 +40,32 @@ void solve() {
     string s;
     cin >> s;
 
-    string s1, s2;
+    vector<int> s1, s2;
 
     for (int i = 0; i < n; i++) {
         if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u') {
-            s1 += s[i];
+            s1.push_back((int)s[i]);
         }
         else {
-            s2 += s[i];
+            s2.push_back((int)s[i]);
         }
     }   
 
-    cout << s1 << " " << s2;
     
+    quick_sort(s1, 0, s1.size() - 1);
+    quick_sort(s2, 0, s2.size() - 1);
+
+    for (auto i: s1) cout << (char)i;
+    for (auto i: s2) cout << (char)i;
 }
+
 
 int main() {
 
- 
-    int a[] = {1, 5, 1, 23, 5, 1, 100};
-    quick_sort(a, 0, 6);
-    for (int i = 0; i < 7; i++) cout << a[i] << " ";
+    solve();
 
-    return 0;
+    return 0;   
 }
+
+
+

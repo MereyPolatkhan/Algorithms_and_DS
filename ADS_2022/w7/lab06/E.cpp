@@ -1,12 +1,14 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 
 using namespace std;
+
+
 int partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = low;
 
     for (int j = low; j <= high - 1; j++) {
-        if (arr[j] <= pivot) {
+        if (arr[j] >= pivot) {
             swap(arr[i], arr[j]);
             i++;
         }
@@ -34,18 +36,41 @@ void quick_sort(int arr[], int low, int high) {
 
 
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    // freopen("input.txt", "r", stdin);
+    int n, m;
+    cin >> n >> m;
 
-    int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-
-    quick_sort(a, 0, n - 1);
+    int a[n][m];
 
     for (int i = 0; i < n; i++) {
-        cout << a[i] << " ";
+        for (int j = 0; j < m; j++) {
+            cin >> a[i][j];
+        }
     }
-    return 0;   
+
+
+    for (int j = 0; j < m; j++) {
+        int temp[n];
+        for (int i = 0; i < n; i++) {
+            temp[i] = a[i][j];
+        }    
+        quick_sort(temp, 0, n - 1);
+
+        for (int i = 0; i < n; i++) {
+            a[i][j] = temp[i];
+        }    
+
+    }
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << a[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    
+
+    return 0;
 }

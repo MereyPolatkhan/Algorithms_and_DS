@@ -7,6 +7,11 @@ int main() {
     string s;
     cin >> s;
 
+    if (s.size() % 2 == 1) {
+        cout << "NO";
+        return 0;
+    }
+
     stack<char> box;
     for (int i = 0; i < s.size(); i++) {
         if (box.size() == 0){ 

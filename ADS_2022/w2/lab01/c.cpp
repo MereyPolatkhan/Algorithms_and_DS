@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string func(string s) {
+stack<char> clean(string s) {
     stack<char> st;
     for (int i = 0; i < s.size(); i++) {
         if (s[i] != '#') {
@@ -13,12 +13,7 @@ string func(string s) {
             st.pop();
         }
     }  
-    string neww = "";
-    while (st.size() != 0){
-        neww += st.top();
-        st.pop();
-    }  
-    return neww;
+    return st;
 }
 
 int main() {
@@ -26,8 +21,8 @@ int main() {
     string s, t;
     cin >> s >> t;
 
-    string ss = func(s);
-    string tt = func(t);
+    stack<char> ss = clean(s);
+    stack<char> tt = clean(t);
 
     if (ss != tt) {
         cout << "No";
