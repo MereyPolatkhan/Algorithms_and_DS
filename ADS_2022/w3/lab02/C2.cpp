@@ -6,22 +6,13 @@ struct Node {
     int data;
     int index;
     Node *next;
-    Node() {
-        this->data = -55555;
-        this->index = -55555;
-        this->next = NULL;
-    }
+
     Node(int data, int index) {
         this->data = data;
         this->index = index;
         this->next = NULL;
     }
 
-    Node (int data, int index, Node* next) {
-        this->data = data;
-        this->index = index;
-        this->next = next;
-    }
 };
 
 struct LinkedList {

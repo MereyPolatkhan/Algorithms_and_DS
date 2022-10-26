@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <map>
 
 
 using namespace std;
@@ -12,28 +12,18 @@ int main(){
     int n;
     cin >> n;
 
-    int a[n];
+    map<int, int> m;
 
-
-    // built
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        int x;
+        cin >> x;
+        m[x]++;
     }
 
+    map<int, int> :: iterator it;
 
-    int x;
-    cin >> x;
-
-    
-    int mn = 100000;
-    int res_index;
-    for (int i = 0; i < n; i++) {
-        int distance = abs(a[i] - x);
-        if (mn > distance) {
-            mn = distance;
-            res_index = i;
-        }
+    for (it = m.begin(); it != m.end(); it++) {
+        cout << it->first << " " << it->second << "\n";
     }
 
-    cout << res_index;
 }
