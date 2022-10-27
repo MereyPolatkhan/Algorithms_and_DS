@@ -71,7 +71,7 @@ public:
     void print(){
         Node *cur = head;
         while (cur != NULL) {
-            cout << cur->data << " ";
+            cout << "data: " << cur->data << "   index: " << cur->index << "\n";
             cur = cur->next;
         }
     }
