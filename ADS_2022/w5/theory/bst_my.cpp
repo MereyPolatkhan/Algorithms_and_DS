@@ -31,7 +31,7 @@ struct BST {
         else {
             node->right = insert(node->right, data);
         }
-        // return node;
+        return node;
     }
 
     void dfs_In_Order(Node* node) {

@@ -3,8 +3,7 @@
 
 using namespace std;
 
-class Node {
-    public:
+struct Node {
     int data;
     Node *left, *right;
 
@@ -15,8 +14,7 @@ class Node {
     }
 };
 
-class BST {
-    public:
+struct BST {
     Node *root;
     BST() {
         root = NULL;
