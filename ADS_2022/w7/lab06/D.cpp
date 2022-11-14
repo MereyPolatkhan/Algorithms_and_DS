@@ -15,6 +15,38 @@ bool cmp(pair < pair<int, int>, int > a, pair < pair<int, int>, int > b) {
     return a.second < b.second;
 }
 
+int partition(vector< pair < pair<int, int>, int > >& a, int l, int r) {
+    pair < pair<int, int>, int > pi = a[r];
+    int i = l;
+
+    for (int j = l; j < r; j++) {
+        if (cmp(a[j], pi)) {
+            swap(a[j], a[i]);
+            i++;
+        }
+    }
+    swap(a[i], a[r]);
+    return i;
+}
+
+
+int part_random(vector< pair < pair<int, int>, int > >& a, int l, int r) {
+    srand(time(NULL));
+    int p = rand() % (r - l) + l;
+    swap(a[p], a[r]);
+
+    return partition(a, l, r);
+}
+
+void quick_sort(vector< pair < pair<int, int>, int > >& a, int l, int r) {
+    if (l < r) {
+        int p = part_random(a, l, r);
+        quick_sort(a, l, p - 1);
+        quick_sort(a, p + 1, r);
+    }
+}
+
+
 int main() {
     int n;
     cin >> n;
@@ -30,7 +62,7 @@ int main() {
         a.push_back({{d, m}, y});
     }
 
-    sort(a.begin(), a.end(), cmp); 
+    quick_sort(a, 0, a.size() - 1);
 
 
     for (auto i: a) {

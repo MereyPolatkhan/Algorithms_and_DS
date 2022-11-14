@@ -39,7 +39,7 @@ int main() {
     int n, m;
     cin >> n >> m;
     
-    map<int, int> mp;
+    unordered_map<int, int> mp;
 
 
     int x; 
